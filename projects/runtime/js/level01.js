@@ -16,8 +16,8 @@ var level01 = function (window) {
             number: 1, 
             speed: -3,
             gameItems: [
-                {type: 'sawblade',x:400,y:groundY},
-                {type: 'sawblade',x:600,y:groundY},
+                {type: 'sawblade',x:500,y:groundY},
+                {type: 'sawblade',x:700,y:140},
                 {type: 'sawblade',x:900,y:groundY}
             ]
         };
@@ -43,6 +43,27 @@ var level01 = function (window) {
         createSawBlade(400, 195);
         createSawBlade(700, 300);
         createSawBlade(1000, 195);
+        
+        for (i = 0; i < levelData.gameItems.length; i++) {
+            var gameItem = levelData.gameItems[i];
+            
+            createSawBlade(gameItem.x, gameItem.y);
+        }
+        
+        function createSteelBall(x, y) {
+            //maybe change myObstacle to mySpin
+            var hitZoneSize = 25;
+            var damageFromObstacle = 20;
+            var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);        
+            myObstacle.x = x;
+            myObstacle.y = y;
+            game.addGameItem(myObstacle);
+            var obstacleImage = draw.bitmap(); //image here
+            myObstacle.addChild(obstacleImage);
+            obstacleImage.x = -25;
+            obstacleImage.y = -25;
+        }
+        
     }
 };
 
